@@ -1,0 +1,36 @@
+
+double lat1 = 21.529076296756145*PI/180;
+double long1 = 39.17900944892409*PI/180;
+
+double lat2 = 21.528266261565257*PI/180; 
+double long2 = 39.176904245989036*PI/180;
+
+
+void setup() {
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  double x= sin((lat2-lat1)/2);
+  double y= sin((long2-long1)/2);
+  double a= pow(x,2)  +
+  cos(lat1)*cos(lat2)*pow(y,2);
+
+
+  double c =2*atan2(sqrt(a),sqrt(1-a));
+
+  double R= 6371e3;
+
+  double d= R*c;
+
+  double u = sin(long2-long1)*cos(lat2);
+  double v = cos(lat1)*sin(lat2)-sin(lat1)*cos(lat2)*cos(long2-long1);
+
+  double b= atan2(u,v);
+  int bint=b*180/PI;
+   int bd= (bint + 360)% 360;
+  Serial.println(d);
+  Serial.println(bd);
+
+}
