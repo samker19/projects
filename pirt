@@ -1,0 +1,29 @@
+unsigned long currentMillis = 0 ;
+
+void setup()
+{
+  pinMode(3, INPUT);
+  pinMode(2, OUTPUT);
+  pinMode(1, OUTPUT);
+
+}
+
+void loop()
+{
+
+ 
+  
+  if (digitalRead(3) == LOW) {
+    
+    currentMillis = millis();
+    digitalWrite(2, HIGH); 
+    digitalWrite(1, HIGH);
+    
+    
+  } 
+  
+  if( digitalRead(3) == HIGH && millis()>= currentMillis+90000){digitalWrite(2, LOW); digitalWrite(1,LOW);}
+  
+  
+
+}
